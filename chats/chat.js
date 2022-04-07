@@ -3,39 +3,36 @@ import { getUser, sendMessage, checkAuth, getProfile, incrementRating, decrement
 import { renderMessages, renderRating } from '../render-utils.js';
 
 checkAuth();
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
-const upButton = document.querySelector('.up-vote');
-const downButton = document.querySelector('.down-vote');
 const return2ProfilesButton = document.getElementById('back-to-profiles');
 const profileContainer = document.querySelector('.profile-container');
 const usernameHeader = document.querySelector('.username-header');
 const usernameEl = document.querySelector('.username');
+
 const form = document.querySelector('form');
 
 const logoutButton = document.getElementById('logout');
 
 window.addEventListener('load', async ()=>{
-
-    await fetchAndDisplay(); //write this!
+    await client
+        .from('chats')
+        .on('INSERT', (payload) => {
+            //console.log('Change received!' , payload)
+            const chatItemOuterEl = document.createElement('div');
+            const chatSenderEl = document.createElement('p');
+            const chatMessageEl = document.createElement('p');
+        });
+		.subscribe();
 
 });
 
 return2ProfilesButton.addEventListener('click', ()=>{
     window.location.href = '../employees';
 });
-
-upButton.addEventListener('click', async ()=>{
-    const profile = await incrementRating(profile.id);
-    await fetchAndDisplay(profile);
-
-});
-
-downButton.addEventListener('click', async ()=>{
-    const profile = await decrementRating(profile.id);
-    await fetchAndDisplay(profile);
-});
+//
 
 export async function fetchAndDisplay(){
     profileContainer.textContent = '';
@@ -51,24 +48,7 @@ export async function fetchAndDisplay(){
 
 }
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
 
-    const data = new FormData(form);
-    const fromUser = await getUser();
-
-    await sendMessage({
-        text: data.get('text'),
-        from_email: fromUser.email,
-        recipient_id: id,
-
-    });
-
-    form.reset();
-
-    await fetchAndDisplay();
-
-});
 
 logoutButton.addEventListener('click', () => {
     logout();

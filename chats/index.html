@@ -21,34 +21,26 @@
     </header>
     <button id="logout">Logout</button>
     <button id="back-to-profiles">Return to Profiles</button>
-    <main class="employee-main">
-        <h1 class="username-header">
+    <main>
+		<a href="../employees/employees.js">All Profiles</a>
+        <div class="chatroom">
+			<div class="all-chats">
 
-        </h1>
-        <form>
-            <input name="text">
-            <button>Send Message</button>
-        </form>
-        <section class="profile-container">
-        <div class="send-message">
-            <h3 class="send-message">Send <span class="username"></span> a Message</h3>
-            
-        </div>
-        <div class="message-container">
-            <h3 class="messages-header">Messages to this Employee</h3>
-            <div class="messages"></div>
-        </div>
-        <div class="rating-container">
-            <h3 class="rating">This Employee has 0 rating</h3>
-            <button class="up-vote">Good Jobbin</button>
-            <button class="down-vote">Bad Jobbin</button>
-        </div>
-    </section>
+			</div>
+			</div>
+		</div>
+		<div class="input-area">
+			<form>
+				<input />
+				<button>Send</button>
+			</form>
+
+		</div>
     </main>
     <footer>
         <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
     </footer>
-    <script type="module" src="./employee.js"></script>
+    <script type="module" src="./chat.js"></script>
 </body>
 
 </html>
